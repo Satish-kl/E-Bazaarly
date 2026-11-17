@@ -1,0 +1,16 @@
+[
+  { "id": 1,  "name": "Aero Wireless Earbuds",   "category": "Tech",    "price": 1999, "stock": 60,  "image": "🎧", "color": "#7c5cff", "description": "True wireless earbuds with 28-hour battery life, touch controls and a pocket-sized charging case." },
+  { "id": 2,  "name": "Pulse Fitness Band",      "category": "Tech",    "price": 2499, "stock": 45,  "image": "⌚", "color": "#00c2a8", "description": "Slim fitness band tracking steps, sleep and heart rate, with a bright AMOLED display." },
+  { "id": 3,  "name": "Orbit Bluetooth Speaker", "category": "Tech",    "price": 2799, "stock": 35,  "image": "🔊", "color": "#ff6b6b", "description": "Waterproof 360-degree speaker with deep bass and 12 hours of playtime." },
+  { "id": 4,  "name": "Volt 65W Fast Charger",   "category": "Tech",    "price": 1499, "stock": 90,  "image": "🔌", "color": "#ffb703", "description": "Compact GaN charger with two USB-C ports that powers a laptop and a phone together." },
+  { "id": 5,  "name": "Linen Throw Blanket",     "category": "Home",    "price": 1899, "stock": 40,  "image": "🛋️", "color": "#e9c46a", "description": "Soft stonewashed linen blanket, perfect for sofas and chilly evenings." },
+  { "id": 6,  "name": "Glow Aroma Candle",       "category": "Home",    "price": 549,  "stock": 150, "image": "🕯️", "color": "#f4a261", "description": "Hand-poured soy candle with sandalwood and vanilla notes, 45 hours of burn time." },
+  { "id": 7,  "name": "Terra Plant Pot Set",     "category": "Home",    "price": 799,  "stock": 85,  "image": "🪴", "color": "#2a9d8f", "description": "Set of three minimalist ceramic planters with bamboo trays and drainage holes." },
+  { "id": 8,  "name": "Brew Pour-Over Kettle",   "category": "Home",    "price": 2199, "stock": 30,  "image": "☕", "color": "#8d6e63", "description": "Stainless steel gooseneck kettle for precise pouring and a perfect cup." },
+  { "id": 9,  "name": "Street Canvas Sneakers",  "category": "Style",   "price": 2299, "stock": 55,  "image": "👟", "color": "#4cc9f0", "description": "Everyday canvas sneakers with a cushioned insole and durable rubber outsole." },
+  { "id": 10, "name": "Nomad Daypack",           "category": "Style",   "price": 1999, "stock": 65,  "image": "🎒", "color": "#577590", "description": "Water-resistant 22L daypack with a padded laptop sleeve and hidden zip pocket." },
+  { "id": 11, "name": "Aviator Sunglasses",      "category": "Style",   "price": 999,  "stock": 80,  "image": "🕶️", "color": "#f72585", "description": "Polarized UV400 aviators with a lightweight metal frame." },
+  { "id": 12, "name": "Flow Yoga Mat",           "category": "Fitness", "price": 1099, "stock": 70,  "image": "🧘", "color": "#80ed99", "description": "6 mm eco-friendly non-slip yoga mat with alignment lines and a carry strap." },
+  { "id": 13, "name": "Iron Adjustable Dumbbell","category": "Fitness", "price": 3499, "stock": 20,  "image": "🏋️", "color": "#adb5bd", "description": "Space-saving adjustable dumbbell, 2 to 12 kg in 2 kg steps." },
+  { "id": 14, "name": "Chill Steel Bottle",      "category": "Fitness", "price": 749,  "stock": 140, "image": "🍶", "color": "#48cae4", "description": "Insulated 1-litre bottle that keeps drinks cold for 24 hours and hot for 12." }
+]

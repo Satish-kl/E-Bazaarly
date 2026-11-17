@@ -1,0 +1,91 @@
+name: bazaarly
+
+# Bazaarly - 3 microservices + React frontend behind an Nginx gateway.
+# Only port 80 is published; the services talk to each other on a private network.
+#
+# Usage:
+#   cp .env.example .env     (then set JWT_SECRET)
+#   docker compose up -d --build
+#   open http://localhost
+#
+# Optional (for ECR): set REGISTRY and TAG in .env so images are named
+#   $REGISTRY/bazaarly-user:$TAG, $REGISTRY/bazaarly-product:$TAG, $REGISTRY/bazaarly-order:$TAG
+
+x-service-defaults: &service-defaults
+  restart: unless-stopped
+  networks: [backend]
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  user-service:
+    <<: *service-defaults
+    build: ./services/user-service
+    image: ${REGISTRY:-bazaarly}/bazaarly-user:${TAG:-latest}
+    environment:
+      PORT: "3001"
+      DATA_DIR: /app/data
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+    volumes:
+      - user_data:/app/data
+
+  product-service:
+    <<: *service-defaults
+    build: ./services/product-service
+    image: ${REGISTRY:-bazaarly}/bazaarly-product:${TAG:-latest}
+    environment:
+      PORT: "3002"
+
+  order-service:
+    <<: *service-defaults
+    build: ./services/order-service
+    image: ${REGISTRY:-bazaarly}/bazaarly-order:${TAG:-latest}
+    environment:
+      PORT: "3003"
+      DATA_DIR: /app/data
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      PRODUCT_SERVICE_URL: http://product-service:3002
+    volumes:
+      - order_data:/app/data
+    depends_on:
+      product-service:
+        condition: service_healthy
+
+  frontend:
+    <<: *service-defaults
+    build: ./frontend
+    image: bazaarly-frontend:${TAG:-latest}
+
+  # Reverse proxy / gateway - the only container exposed to users.
+  nginx:
+    <<: *service-defaults
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      frontend:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+      product-service:
+        condition: service_healthy
+      order-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/nginx-health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  user_data:
+  order_data:
