@@ -24,7 +24,7 @@ services:
   user-service:
     <<: *service-defaults
     build: ./services/user-service
-    image: ${REGISTRY:-bazaarly}/bazaarly-user:${TAG:-latest}
+    image: ${REGISTRY:-383000882295.dkr.ecr.us-east-1.amazonaws.com}/user-service:${TAG:-latest}
     environment:
       PORT: "3001"
       DATA_DIR: /app/data
@@ -35,14 +35,14 @@ services:
   product-service:
     <<: *service-defaults
     build: ./services/product-service
-    image: ${REGISTRY:-bazaarly}/bazaarly-product:${TAG:-latest}
+    image: ${REGISTRY:-383000882295.dkr.ecr.us-east-1.amazonaws.com}/product-service:${TAG:-latest}
     environment:
       PORT: "3002"
 
   order-service:
     <<: *service-defaults
     build: ./services/order-service
-    image: ${REGISTRY:-bazaarly}/bazaarly-order:${TAG:-latest}
+    image: ${REGISTRY:-383000882295.dkr.ecr.us-east-1.amazonaws.com}/order-service:${TAG:-latest}
     environment:
       PORT: "3003"
       DATA_DIR: /app/data
@@ -57,7 +57,7 @@ services:
   frontend:
     <<: *service-defaults
     build: ./frontend
-    image: bazaarly-frontend:${TAG:-latest}
+    image: ${REGISTRY:-383000882295.dkr.ecr.us-east-1.amazonaws.com}/frontend-service:${TAG:-latest} 
 
   # Reverse proxy / gateway - the only container exposed to users.
   nginx:
